@@ -1,6 +1,7 @@
 # cisc108H-finalproject-Jetpack-cat
 Sofia Arenas
 sarenas@udel.edu
+Phase 1 Video Link: https://youtu.be/tDhppu8dgrQ
 # Pitch
 In this game, "Jetpack Cat", the player controls a cat equipped with a powerful jetpack. The game features endless vertical scrolling, and the higher the cat climbs, the more challenging and diverse the obstacles become. As players navigate the game, they'll encounter a variety of menacing monsters – scary dogs of different sizes and temperaments. The goal? Collect as many yarn balls as possible while dodging the monsters and mastering the art of precise jumps.
 # Phase 1
@@ -8,7 +9,6 @@ In this game, "Jetpack Cat", the player controls a cat equipped with a powerful 
 - [x] Implement control using arrow keys for left and right movement
 - [x] Implement upward movement (jumping with space key)
 - [x] Platforms appear on the screen
-# Video Link: https://youtu.be/tDhppu8dgrQ
 # Phase 2
 - [ ] Create dogs of different sizes
 - [ ] Get the dogs to appear on platforms at random intervals
