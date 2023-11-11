@@ -8,6 +8,7 @@ In this game, "Jetpack Cat", the player controls a cat equipped with a powerful 
 - [x] Implement control using arrow keys for left and right movement
 - [x] Implement upward movement (jumping with space key)
 - [x] Platforms appear on the screen
+#Video Link: https://youtu.be/tDhppu8dgrQ
 # Phase 2
 - [ ] Create dogs of different sizes
 - [ ] Get the dogs to appear on platforms at random intervals
