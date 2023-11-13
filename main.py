@@ -89,7 +89,6 @@ def create_platforms()-> DesignerObject:
 
 
 def make_platforms(world: World):
-    """ Create a new fire at random times, if there aren't enough fires """
     random_chance = randint(1, 100)
     print(len(world.platforms))
     if (len(world.platforms) < 10) and random_chance == 1:
