@@ -3,7 +3,7 @@ Sofia Arenas
 sarenas@udel.edu
 
 # Pitch
-In this game, "Jetpack Cat", the player controls a cat equipped with a powerful jetpack. The game features endless vertical scrolling, and the higher the cat climbs, the more challenging and diverse the obstacles become. As players navigate the game, they'll encounter a variety of menacing monsters – scary dogs of different sizes and temperaments. The goal? Collect as many yarn balls as possible while dodging the monsters.
+In this game, "Jetpack Cat", the player controls a cat equipped with a powerful jetpack. The game features endless vertical scrolling, and the higher the cat climbs, the more challenging and diverse the obstacles become. As players navigate the game, they'll encounter a variety of menacing monsters – scary bats of different sizes and temperaments. The goal? Collect as many yarn balls as possible while dodging the monsters.
 # Phase 1
 - [x] The cat exists on the screen
 - [x] Implement control using the mouse key
