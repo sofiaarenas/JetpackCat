@@ -25,3 +25,5 @@ Phase 2 Video Link:
 - [ ] Implement a scoring system based on the collected yarn
 - [ ] Track points earned by the cat for collecting yarn
 - [ ] Display the current score on the game screen
+
+Phase 3 Video Link: 
