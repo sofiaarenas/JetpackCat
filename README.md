@@ -14,9 +14,11 @@ Phase 1 Video Link: https://youtu.be/tDhppu8dgrQ
 # Phase 2
 - [x] Create monsters of different sizes (scales)
 - [x] Get the bats to appear at random intervals
-- [x] Allow the cat to also jump (the "jetpack" aspect of the game)
-- [x] The cat can shoot bullets to destory monsters by pressing the "S" key
+- [x] Allow the cat to also jump by hitting the space key (the "jetpack" aspect of the game)
+- [x] The cat can shoot bullets to destroy monsters by pressing the "S" key
 - [x] Implement yarn collectible items of different colors for the cat to collect
+
+Phase 2 Video Link: 
 # Phase 3
 - [ ] Implement game over scenarios when the cat collides with a monster or falls off the screen
 - [ ] Display a game over message and the final score when the game ends
