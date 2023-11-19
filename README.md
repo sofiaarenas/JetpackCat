@@ -18,7 +18,7 @@ Phase 1 Video Link: https://youtu.be/tDhppu8dgrQ
 - [x] The cat can shoot bullets to destroy monsters by pressing the "S" key
 - [x] Implement yarn collectible items of different colors for the cat to collect
 
-Phase 2 Video Link: 
+Phase 2 Video Link: https://youtu.be/nSE-tVvJByA
 # Phase 3
 - [ ] Implement game over scenarios when the cat collides with a monster or falls off the screen
 - [ ] Display a game over message and the final score when the game ends
