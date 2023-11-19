@@ -12,13 +12,14 @@ In this game, "Jetpack Cat", the player controls a cat equipped with a powerful 
 
 Phase 1 Video Link: https://youtu.be/tDhppu8dgrQ
 # Phase 2
-- [ ] Create dogs of different sizes
-- [ ] Get the dogs to appear on platforms at random intervals
-- [ ] Develop collision detection to identify when the cat touches a monster
-- [ ] Implement yarn collectible items of different colors for the cat to collect
-- [ ] Track points earned by the cat for collecting yarn
+- [x] Create monsters of different sizes (scales)
+- [x] Get the bats to appear at random intervals
+- [x] Allow the cat to also jump (the "jetpack" aspect of the game)
+- [x] The cat can shoot bullets to destory monsters by pressing the "S" key
+- [x] Implement yarn collectible items of different colors for the cat to collect
 # Phase 3
 - [ ] Implement game over scenarios when the cat collides with a monster or falls off the screen
 - [ ] Display a game over message and the final score when the game ends
 - [ ] Implement a scoring system based on the collected yarn
+- [ ] Track points earned by the cat for collecting yarn
 - [ ] Display the current score on the game screen
