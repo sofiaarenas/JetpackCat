@@ -11,6 +11,7 @@ The player controls a cat equipped with a powerful jetpack and as the player nav
 Jetpack Cat is an engaging platform game where players take on the role of a cat exploring a spooky world filled with monsters. The game features endless vertical scrolling, and as the game goes on, the bigger the monsters get. The goal? Collect as many yarn balls as possible while jumping from platform to platform, all while evading scary monsters that grow in size. Embrace the challenge, master your jumps, and compete for the highest score!
 
 # Preview 
+Demo: https://youtu.be/5PcBJC_zzw4
 
 # Instructions
 Reach the highest score possible by collecting yarn to score points. If you fall off the platforms or get caught by a monster, you lose the game. To assist navigating through the platforms, the cat can employ its jetpack and jump by pressing the "space" key.
