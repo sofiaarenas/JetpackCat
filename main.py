@@ -2,13 +2,13 @@ from designer import *
 from dataclasses import dataclass
 from random import randint
 
-CAT_SPEED = 9
-JUMP_HEIGHT = 16
-MAX_JUMP_TIME = 1
-PLATFORM_FALL_SPEED = 9 # How fast the game is going/cat is moving
+CAT_SPEED = 9 
+JUMP_HEIGHT = 16 # Maximum height the cat can reach when jumping
+MAX_JUMP_TIME = 1 # The maximum duration of time the cat character can ascend during a jump
+PLATFORM_FALL_SPEED = 9 # The vertical speed at which platforms fall or move downwards.
 NUM_PLATFORMS = 16  # Number of platforms to start with
-MONSTER_FALL_SPEED= 3
-COIN_FALL_SPEED= 2
+MONSTER_FALL_SPEED= 3 # The vertical speed at which monsters fall or move downwards
+COIN_FALL_SPEED= 2  # The vertical speed at which coins fall or move downwards
 COINS= 8 # Number of coins to start with
 
 
@@ -77,11 +77,12 @@ def handle_jump(world: World):
         world.cat.y += PLATFORM_FALL_SPEED
         
  
-def handle_space_key(world: World, keys: str): # The cat can also jump since it has a "jetpack" equipped
+def handle_space_key(world: World, keys: str): # The cat can also jump since it has a "jetpack" equipped by pressing spacekey
     if keys == "space":
         world.jumping = not world.jumping
 
 def create_platform() -> DesignerObject:
+    # Creating the platforms
     platform = emoji("⬜")
     platform.scale_x = 2.2 # Make the platform wider
     platform.scale_y = 0.5
@@ -105,6 +106,16 @@ def make_platforms(world: World):
     world.platforms = new_platforms
 
 def platform_collision(cat: DesignerObject, platform: DesignerObject) -> bool:
+    """
+    Checks if the cat is colliding with a platform.
+
+    Parameters:
+    cat (DesignerObject): The cat character object.
+    platform (DesignerObject): The platform object.
+
+    Returns:
+    bool: True if the cat is colliding with the platform, False otherwise.
+    """
     return (
         cat.x < platform.x + platform.width and
         cat.x + cat.width > platform.x and
@@ -128,6 +139,11 @@ def create_monster() -> DesignerObject:
 
 
 def make_monster(world: World):
+    """
+    This function moves each monster down the screen at a constant fall speed. If a monster moves past the bottom of the screen,
+    it is repositioned to the top at a random horizontal location. If there are fewer monsters than a third of the number of
+    platforms, new monsters are created and added to the world until this condition is met.
+    """
     new_monsters= []
     for monster in world.monsters:
         monster.y += MONSTER_FALL_SPEED
@@ -218,7 +234,8 @@ def create_different_monster() -> DesignerObject:
     ghost.y = randint(0, get_height() - int(ghost.height))
     return ghost
 
-def grow_ghosts(world: World): # Scaling theme initiated in my game
+def grow_ghosts(world: World):
+# Makes the ghosts gradually get bigger in size
     for monster in world.ghosts:
         ghost.scale_x += .001
         ghost.scale_y += .001
@@ -232,7 +249,7 @@ def display_game_over(score):
    
 
 def cat_falling(world: World):
-    if world.cat.y > 720:
+    if world.cat.y > 720: 
         display_game_over(world.collected_coins)  # Pass the collected coins as the score parameter
         pause()
 
