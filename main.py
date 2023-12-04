@@ -11,7 +11,6 @@ MONSTER_FALL_SPEED= 3 # The vertical speed at which monsters fall or move downwa
 COIN_FALL_SPEED= 2  # The vertical speed at which coins fall or move downwards
 COINS= 8 # Number of coins to start with
 
-
 set_window_size(1024, 768)
 background_image("https://c4.wallpaperflare.com/wallpaper/826/698/360/cemetery-tombstones-full-moon-road-wallpaper-preview.jpg")
 
@@ -34,9 +33,9 @@ def create_world() -> World:
     cat.x = get_width() / 2
     cat.y = get_height() / 2
 
-    platforms = [create_platform() for _ in range(NUM_PLATFORMS)]
-    monsters = [create_monster() for _ in range(NUM_PLATFORMS // 2)] # Fewer monsters when divided by a larger number 
-    coins = [create_coin() for _ in range(COINS)]
+    platforms = [create_platform() for platform in range(NUM_PLATFORMS)]
+    monsters = [create_monster() for monster in range(NUM_PLATFORMS // 2)] # Fewer monsters when divided by a larger number 
+    coins = [create_coin() for coin in range(COINS)]
     bullets= []
     collected_coins = 0  # Initialize collected coins
     score_display= text("deepskyblue", "0", 23, get_width() - 100,20, font_name='papyrus')
@@ -48,8 +47,12 @@ def move_cat(world: World):
     world.cat.x = get_mouse_x()  # Move the cat horizontally with the mouse
 
 def handle_jump(world: World):
+    """
+    This function simulates jumping and gravity mechanics for the cat in the game. It handles the jumping behavior of the cat
+    within the game. It calculates the jump height based on time and adjusts the cat's vertical position.
+    Additionally, it manages the creation and updating of platforms while the cat is in motion.
+    """
     MAX_JUMP_HEIGHT = 2 * JUMP_HEIGHT
-
     if world.jumping:
         if world.jump_time < MAX_JUMP_TIME:
             jump_height = JUMP_HEIGHT * (1 - world.jump_time / MAX_JUMP_TIME)
@@ -59,19 +62,17 @@ def handle_jump(world: World):
             
             # Updating and creating platforms
             new_platforms = []
-
             for platform in world.platforms:
                 platform.y += PLATFORM_FALL_SPEED
-
+                
                 # Check for platforms that are no longer visible
                 if platform.y + platform.height > get_height():
                     platform.x = randint(0, get_width() - int(platform.width))
                     platform.y= 0   
-        
         else:
             world.jumping = False
             world.jump_time = 0.0
-
+            
     # Simulate gravity when not jumping
     elif world.cat.y < get_height() - world.cat.height:
         world.cat.y += PLATFORM_FALL_SPEED
@@ -91,6 +92,13 @@ def create_platform() -> DesignerObject:
     return platform
 
 def make_platforms(world: World):
+    """
+    Updates the positions of platforms and replaces those that have moved off-screen.
+
+    This function iterates through each platform in the world, moving them according to the
+    PLATFORM_FALL_SPEED. Platforms that move off the top of the screen are no longer visible,
+    and new platforms are created to replace them.
+    """
     new_platforms = []
 
     for platform in world.platforms:
@@ -124,12 +132,24 @@ def platform_collision(cat: DesignerObject, platform: DesignerObject) -> bool:
     )
 
 def handle_platform_collision(world: World):
+    """
+    Checks for collisions between the cat and platforms in the game world and initiates a jump if a collision is detected.
+
+    This function iterates through each platform in the world and uses the `platform_collision` function to check
+    for a collision with the cat. If a collision is detected and the cat is not already jumping, it sets the world's
+    jumping state to True and resets the jump time to allow the cat to jump off the platform.
+    """
     for platform in world.platforms:
         if platform_collision(world.cat, platform) and not world.jumping:
             world.jumping = True
             world.jump_time = 0.0
             
 def create_monster() -> DesignerObject:
+    """
+    This function generates a monster DesignerObject using the bat emoji as the monster image.
+    It sets the scale, width, and height for the monster, positions it randomly within the game window,
+    and returns the created monster object.
+    """
     monster = emoji("bat")  # Using the bat emoji as my monster
     monster.scale_x = 0.5 # How wide the monster is 
     monster.scale_y = 0.5
@@ -156,12 +176,26 @@ def make_monster(world: World):
         world.monsters.append(monster)
         
             
-def grow_monsters(world: World): # Scaling theme initiated in my game
+def grow_monsters(world: World):
+    """
+    Gradually increases the size of the monster.
+
+    This function iterates through each monster in the world (the bat) and increments its scale in both the x and y
+    dimensions by a small amount. This simulates a scaling theme where monsters grow in size over time, making the
+    game progressively more challenging.
+    """
     for monster in world.monsters:
         monster.scale_x += .001
         monster.scale_y += .001
         
 def create_coin() -> DesignerObject:
+    """
+    Creates a coin object represented by an emoji and initializes its size and position.
+
+    This function creates a new coin object using a yarn emoji, sets its scale to half the original size,
+    and randomly positions it within the bounds of the game screen. The coin's x and y coordinates are set
+    to random values so they appear randomly on the screen.
+    """
     coin = emoji("🧶")  # Using the yarn emoji
     coin.scale_x = 0.5
     coin.scale_y = 0.5
@@ -182,7 +216,7 @@ def make_coins(world: World):
         world.coins.append(coin)
             
 def handle_shoot_key(world: World, keys: str):
-    # When pressing the "s" key, the user can shoot bullets to destroy the bats
+    # When pressing the "S" key, the user can shoot bullets to destroy the bats
     if keys == "s":
         create_bullet(world)
 
@@ -194,6 +228,13 @@ def create_bullet(world: World):
     world.bullets.append(bullet)  # Add the bullet to the list of bullets
 
 def shoot_bullets(world: World):
+    """
+    Updates the positions of bullets, checks for collisions with monsters, and handles the removal and destruction of bullets and monsters.
+
+    This function iterates through each bullet in the world, updating its position based on its speed. It checks for collisions
+    between each bullet and the monsters in the world. If a collision is detected, both the bullet and the monster are removed
+    from the world and destroyed. The function also removes any bullets that have gone off the screen.
+    """
     for bullet in world.bullets:
         bullet.y += bullet.speed_y
         
@@ -249,17 +290,26 @@ def display_game_over(score):
    
 
 def cat_falling(world: World):
+    """
+    This function checks the cat's y-coordinate to determine if it has fallen off the bottom of the screen.
+    If the cat's y-coordinate is greater than the defined threshold (720), it calls the `display_game_over`
+    function to show the game over screen with the number of collected coins as the score, and then pauses the game.
+    """
     if world.cat.y > 720: 
         display_game_over(world.collected_coins)  # Pass the collected coins as the score parameter
         pause()
 
 def check_collision(world: World) -> bool:
+    """
+    This function iterates through the monsters in the game world and checks for collisions with the cat.
+    If a collision is detected, it displays the game over message with the collected coins as the score parameter
+    and pauses the game before exiting the function to stop the game execution.
+    """
     # Check for collision between the cat and monsters
     for monster in world.monsters:
         if colliding(world.cat, monster):
             display_game_over(world.collected_coins)  # Pass the collected coins as the score parameter
             pause()  # Exit the function to stop the game
-
            
 when("starting", create_world)
 when("updating", move_cat)
